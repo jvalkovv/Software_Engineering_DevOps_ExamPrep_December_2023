@@ -1,0 +1,21 @@
+name: Build and Test and Deploy
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  softuni_username:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout of the repo
+        uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+      - name: Chech SoftUni username
+        run: echo "SoftUni Username - jvalkov"

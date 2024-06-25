@@ -33,13 +33,11 @@ jobs:
         with:
           node-version: 20.x
           cache: npm
-      - name: Install Playwright
-        run: npx playwright install
-      - name: Install Playwright Dependencies
-        run: npm install @playwright/test@latest
       - name: Install Dependencies
         run: npm install
-      - name: Run User interface Tests
+      - name: Install Playwright
+        run: npx playwright install
+      - name: Run User Interface Tests
         run: npm run test:ui
 
   softuni_username:

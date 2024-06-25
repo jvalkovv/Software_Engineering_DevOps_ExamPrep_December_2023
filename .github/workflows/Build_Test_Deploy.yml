@@ -21,6 +21,7 @@ jobs:
         run: npm install
       - name: Run Security Tests
         run: npm run npm-test-security
+
   softuni_username:
     runs-on: ubuntu-latest
     steps:
@@ -33,3 +34,15 @@ jobs:
           cache: npm
       - name: Chech SoftUni username
         run: echo "SoftUni Username - jvalkov"
+
+  deploy_to_render:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout of the repo
+        uses: actions/checkout@v4
+      - name: Deploy to Render in Production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.MY_RENDER_WEB_SERVICE_ID }}
+          api-key: ${{ secrets.MY_RENDER_API_KEY }}
